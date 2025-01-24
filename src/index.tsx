@@ -30,8 +30,8 @@ const root = ReactDOM.createRoot(
 // Initialize firebase instance
 if (process.env.NODE_ENV === 'production'  ){
   fetch('/__/firebase/init.json').then(async response => {
-    const app = initializeApp(await response.json());
-    const analytics = getAnalytics(app);
+    initializeApp(await response.json());
+    //const analytics = getAnalytics(app);
     root.render(
       <React.StrictMode>
         <App />
@@ -40,8 +40,7 @@ if (process.env.NODE_ENV === 'production'  ){
   })
 }
 else{
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  initializeApp(firebaseConfig);
   root.render(
     <React.StrictMode>
       <App />
