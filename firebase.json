@@ -24,7 +24,7 @@
       "startCommand": "yarn run dev"
     },
     "firestore": {
-      "port": 8080
+      "port": 8081
     },
     "hosting": {
       "port": 5000
