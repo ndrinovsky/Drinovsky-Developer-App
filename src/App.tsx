@@ -23,7 +23,7 @@ export default function App() {
     <>
       <Navbar isBordered>
         <NavbarBrand>
-          <p className='font-bold text-inherit font-size: 20px;'>{'{ Nicholas Drinovsky }'}</p>
+          <p className='font-bold text-inherit' style={{ fontSize: '20px' }}>{'{ Nicholas Drinovsky }'}</p>
         </NavbarBrand>
         <NavbarContent className='hidden sm:flex gap-4' justify='center'>
           <NavbarItem>
