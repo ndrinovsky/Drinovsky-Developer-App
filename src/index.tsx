@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { FirebaseOptions, initializeApp } from 'firebase/app';
+import { HeroUIProvider } from '@heroui/react'
 // import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig: FirebaseOptions = {
@@ -28,7 +29,11 @@ if (import.meta.env.MODE === 'production'){
     //const analytics = getAnalytics(app);
     root.render(
       <React.StrictMode>
-        <App />
+        <HeroUIProvider>
+          <main className='dark text-foreground bg-background'>
+            <App />
+          </main>
+        </HeroUIProvider>
       </React.StrictMode>
     );
   })
@@ -37,7 +42,11 @@ else{
   initializeApp(firebaseConfig);
   root.render(
     <React.StrictMode>
-      <App />
+      <HeroUIProvider>
+        <main className='dark text-foreground bg-background'>
+          <App />
+        </main>
+      </HeroUIProvider>
     </React.StrictMode>
   );
 }
