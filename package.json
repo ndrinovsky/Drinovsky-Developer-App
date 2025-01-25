@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@heroui/react": "^2.6.14",
+    "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/user-event": "^13.2.1",
     "@types/node": "^16.7.13",
@@ -11,8 +13,10 @@
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
     "firebase": "^11.2.0",
+    "framer-motion": "^12.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "styled-components": "^6.1.14",
     "typescript": "^4.4.2",
     "vite": "^6.0.11",
     "web-vitals": "^2.1.0"
@@ -46,6 +50,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^29.5.14",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
@@ -53,7 +58,14 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
+    "postcss": "^8.5.1",
+    "tailwindcss": "3.4.17",
     "ts-jest": "^29.2.5",
-    "typescript-eslint": "^8.21.0"
-  }
+    "typescript-eslint": "^8.21.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "main": "index.tsx",
+  "repository": "https://github.com/ndrinovsky/Drinovsky-Developer-App.git",
+  "author": "ndrinovsky <nickdrinovsky@gmail.com>",
+  "license": "MIT"
 }
