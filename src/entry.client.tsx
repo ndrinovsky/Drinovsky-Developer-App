@@ -1,10 +1,8 @@
-import React from 'react';
+import * as React from "react";
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { FirebaseOptions, initializeApp } from 'firebase/app';
-import { HeroUIProvider } from '@heroui/react'
+import { type FirebaseOptions, initializeApp } from 'firebase/app';
+import { HydratedRouter } from 'react-router/dom';
 // import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig: FirebaseOptions = {
@@ -18,37 +16,25 @@ const firebaseConfig: FirebaseOptions = {
   measurementId: import.meta.env.VITE_APP_DEV_MEASUREMENT_ID
 };
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
 // Initialize firebase instance
 if (import.meta.env.MODE === 'production'){
   fetch('/__/firebase/init.json').then(async response => {
     initializeApp(await response.json());
     //const analytics = getAnalytics(app);
-    root.render(
+    ReactDOM.hydrateRoot(
+      document,
       <React.StrictMode>
-        <HeroUIProvider>
-          <main className='dark text-foreground bg-background'>
-            <App />
-          </main>
-        </HeroUIProvider>
+        <HydratedRouter />
       </React.StrictMode>
     );
-  })
+  });
 }
 else{
   initializeApp(firebaseConfig);
-  root.render(
+  ReactDOM.hydrateRoot(
+    document,
     <React.StrictMode>
-      <HeroUIProvider>
-        <main className='dark text-foreground bg-background'>
-          <App />
-        </main>
-      </HeroUIProvider>
+      <HydratedRouter />
     </React.StrictMode>
   );
 }
-
-reportWebVitals();

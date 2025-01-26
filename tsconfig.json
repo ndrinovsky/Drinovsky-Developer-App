@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "types": ["vite/client"],
+    "rootDirs": [".", "./.react-router/types"],
     "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "verbatimModuleSyntax": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -15,11 +17,11 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [ "src", "tailwind.config.js"  ]
+  "include": [ "src", "tailwind.config.js", ".react-router/types/**/*", ".react-router/types/*" ]
 }
