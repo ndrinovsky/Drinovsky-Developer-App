@@ -23,5 +23,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [ "src", "tailwind.config.js", ".react-router/types/**/*", ".react-router/types/*" ]
+  "include": [ "src", "tailwind.config.js", ".react-router/types/**/*", ".react-router/types/*" ],
+  "exclude": ["node_modules", "dist", "build/**"]
 }
