@@ -8,6 +8,11 @@ export default [
       {
         index: true,
         file: './routes/home.tsx',
+      },
+      {
+        path: '/snippets',
+        index: true,
+        file: './routes/snippets.tsx',
       }
     ],
   }
