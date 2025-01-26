@@ -1,6 +1,6 @@
 import * as React from "react";
-import Layout from "../components/layout";
+import Portfolio from "../components/portfolio";
 
-export default function LayoutRoute() {
-  return <Layout />;
+export default function PortfolioRoute() {
+  return <Portfolio />;
 }

@@ -1,7 +1,10 @@
 import { HeroUIProvider } from '@heroui/react';
 import * as React from "react";
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router';
 import NavLayout from "./components/layout";
+import { LanguageContext } from './context/LanguageContext';
+import { useThemeDetector } from './hooks/darkThemeDetector';
+import { useState } from 'react';
 
 interface ErrorBoundaryProps {
   error: unknown;
@@ -66,11 +69,18 @@ export function Layout({children}: { children: React.ReactNode;})
 }
 
 export default function Root() {
+  const isDarkTheme = useThemeDetector();
+  const [language, setLanguage] = useState<'en' | 'ja'>('en');
+  const navigate = useNavigate();
+
+
   return (
-    <HeroUIProvider>
-      <main className='dark text-foreground bg-background'>
-        <Outlet />
-      </main>
+    <HeroUIProvider navigate={navigate} useHref={useHref}>
+      <LanguageContext.Provider value={{ language, setLanguage }}>
+        <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
+          <Outlet />
+        </main>
+      </LanguageContext.Provider>
     </HeroUIProvider>
   );
 }

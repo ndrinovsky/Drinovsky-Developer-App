@@ -2,6 +2,9 @@ import * as React from "react";
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/react';
 import { styled } from 'styled-components';
 import { useLoaderData } from "react-router";
+import { homeStrings } from "../../strings/home";
+import { LanguageContext } from "../../context/LanguageContext";
+import { useContext } from "react";
 
 const StyledCard = styled(Card)`
   padding-left: 1rem;
@@ -14,26 +17,20 @@ const StyledCard = styled(Card)`
 
 export default function Home() {
   const loaderData = useLoaderData();
+  const languageContext = useContext(LanguageContext);
+  const { language } = languageContext;
   console.log(loaderData);
+  const strings = homeStrings;
   return (
     <StyledCard>
       <CardHeader>
-        Introduction
+        {strings.title[language]}
       </CardHeader>
       <CardBody>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <br/>
-        <br/>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        {strings.description[language]}
       </CardBody>
       <CardFooter>
-        Site under construction.
+        {strings.description[language]}
       </CardFooter>
     </StyledCard>
   );
