@@ -27,8 +27,8 @@
   "scripts": {
     "typecheck": "react-router typegen && tsc",
     "start": "react-router dev",
-    "dev": "tsc && react-router dev",
-    "build": "tsc && react-router build",
+    "dev": "react-router typegen && tsc && react-router dev",
+    "build": "react-router typegen && tsc && react-router build",
     "preview": "react-router preview"
   },
   "eslintConfig": {
