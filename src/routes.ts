@@ -10,6 +10,7 @@ export default [
         file: './routes/home.tsx',
       },
       {
+        path: '/portfolio',
         index: true,
         file: './routes/portfolio.tsx',
       },
