@@ -40,7 +40,7 @@ export function ErrorBoundary(props: ErrorBoundaryProps) {
 export function Layout({children}: { children: React.ReactNode;})
 {
   return (
-    <html lang='en'>
+    <html lang='en' className='dark text-foreground bg-background'>
       <head>
         <meta charSet='utf-8' />
         <link rel='icon' crossOrigin='use-credentials' href='/favicon.ico' />

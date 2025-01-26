@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from '@heroui/react';
 import { Outlet, useLocation } from 'react-router';
 import { styled } from 'styled-components';
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode } from 'react';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -26,13 +26,14 @@ export default function Layout(props: LayoutProps) {
     <>
       <Navbar isBordered onMenuOpenChange={setIsMenuOpen}>
         <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className='md:hidden'
         />
-        <NavbarBrand>
-          <p className='font-bold text-inherit' style={{ fontSize: '20px' }}>{'{ Nicholas Drinovsky }'}</p>
+        <NavbarBrand className='font-bold text-inherit text-center'>
+          <p style={{ fontSize: '20px' }} className='w-full'>{'{ Nicholas Drinovsky }'}</p>
         </NavbarBrand>
-        <NavbarContent className='hidden sm:flex gap-4' justify='center'>
+        <div className='md:hidden md:flex gap-4 w-6' />
+        <NavbarContent className='hidden md:flex gap-4' justify='center'>
           <NavbarItem isActive={location.pathname === '/'} >
             <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/'>
               About Me
@@ -49,7 +50,7 @@ export default function Layout(props: LayoutProps) {
             </Link>
           </NavbarItem>
         </NavbarContent>
-        <NavbarContent justify='end'>
+        <NavbarContent justify='end' className='hidden md:flex gap-4'>
           <NavbarItem>
             <Button as={Link} isExternal showAnchorIcon color='primary' href='https://www.linkedin.com/in/nicholas-drinovsky-003a7b7b/' target='_blank' rel='noopener noreferrer' variant='flat'>
               LinkedIn
@@ -63,18 +64,28 @@ export default function Layout(props: LayoutProps) {
         </NavbarContent>
         <NavbarMenu>
           <NavbarMenuItem isActive={location.pathname === '/'} >
-            <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/' className="w-full" size="lg">
+            <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/' className='w-full' size='lg'>
               About Me
             </Link>
           </NavbarMenuItem>
           <NavbarMenuItem isActive={location.pathname === '/portfolio'}>
-            <Link isExternal showAnchorIcon color={location.pathname === '/portfolio' ? 'primary' : 'foreground'} href='https://ndrinovsky.github.io/' className="w-full" size="lg">
-              Portfolio
+            <Link isExternal showAnchorIcon color={location.pathname === '/portfolio' ? 'primary' : 'foreground'} href='https://ndrinovsky.github.io/' className='w-full' size='lg'>
+              Legacy Portfolio
             </Link>
           </NavbarMenuItem>
           <NavbarMenuItem isActive={location.pathname === '/snippets'}>
-            <Link color={location.pathname === '/snippets' ? 'primary' : 'foreground'} href='/snippets'  className="w-full" size="lg">
+            <Link color={location.pathname === '/snippets' ? 'primary' : 'foreground'} href='/snippets'  className='w-full' size='lg'>
               Code Snippets
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link isExternal showAnchorIcon color='primary' href='https://www.linkedin.com/in/nicholas-drinovsky-003a7b7b/' target='_blank' rel='noopener noreferrer'>
+              LinkedIn
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link isExternal showAnchorIcon color='primary' href='https://github.com/ndrinovsky' target='_blank' rel='noopener noreferrer'>
+              GitHub
             </Link>
           </NavbarMenuItem>
         </NavbarMenu>
