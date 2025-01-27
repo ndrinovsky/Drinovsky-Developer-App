@@ -35,12 +35,11 @@ export default function Layout(props: LayoutProps) {
       <Navbar isBordered onMenuOpenChange={setIsMenuOpen}>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className='md:hidden'
+          className='md:hidden w-16'
         />
         <NavbarBrand className='font-bold text-inherit text-center'>
           <p style={{ fontSize: '20px' }} className='w-full'>{`{ ${strings.developerName.en} }`}</p>
         </NavbarBrand>
-        {/* <div className='md:hidden md:flex gap-4 w-6' /> */}
         <NavbarContent className='hidden md:flex gap-4' justify='center'>
           <NavbarItem isActive={location.pathname === '/'} >
             <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/' className='w-full' size='lg'>
@@ -69,13 +68,20 @@ export default function Layout(props: LayoutProps) {
               {strings.gitHubLink[language]}
             </Button>
           </NavbarItem>
-        </NavbarContent>
           <NavbarItem>
             <ButtonGroup size='sm'>
-              <Button isDisabled={language === 'en'} onPress={toggleLanguage}>English</Button>
-              <Button isDisabled={language === 'ja'} onPress={toggleLanguage}>日本語</Button>
+              <Button isDisabled={language === 'en'} onPress={toggleLanguage} size='sm'>English</Button>
+              <Button isDisabled={language === 'ja'} onPress={toggleLanguage} size='sm'>日本語</Button>
             </ButtonGroup>
           </NavbarItem>
+        </NavbarContent>
+        <NavbarContent className='md:hidden' justify='center'>
+          {
+            language === 'ja' ?
+            <Button onPress={toggleLanguage}>English</Button> :
+            <Button onPress={toggleLanguage}>日本語</Button>
+          }
+        </NavbarContent>
         <NavbarMenu>
           <NavbarMenuItem isActive={location.pathname === '/'} >
             <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/' className='w-full' size='lg'>
