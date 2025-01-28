@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/react';
 import { styled } from 'styled-components';
-// import { useLoaderData } from 'react-router';
-import { homeStrings } from '../../strings/home';
+import { snippetStrings } from '../../strings/snippets';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
 
@@ -15,24 +14,19 @@ const StyledCard = styled(Card)`
 `;
 
 
-export default function Home() {
-  // const loaderData = useLoaderData();
-  // console.log(loaderData);
+export default function Snippets() {
   const languageContext = useContext(LanguageContext);
   const { language } = languageContext;
-  const strings = homeStrings;
+  const strings = snippetStrings;
   return (
     <StyledCard>
       <CardHeader>
-        <div className='text-3xl font-bold tracking-tight'>{strings.introductionSectionTitle[language]}</div>
+        <div className='text-3xl font-bold tracking-tight'>{strings.pageTitle[language]}</div>
       </CardHeader>
       <CardBody>
-        <p>{strings.introductionSectionContentP1[language]}</p><br />
-        <p>{strings.introductionSectionContentP2[language]}</p><br />
-        <p>{strings.introductionSectionContentP3[language]}</p><br />
+        <p>{strings.descriptionContentP1[language]}</p><br />
       </CardBody>
       <CardFooter>
-        {strings.description[language]}
       </CardFooter>
     </StyledCard>
   );

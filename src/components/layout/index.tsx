@@ -3,8 +3,8 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMen
 import { Outlet, useLocation } from 'react-router';
 import { styled } from 'styled-components';
 import { useContext, useState, type ReactNode } from 'react';
-import { LanguageContext } from '../../context/LanguageContext';
-import { commonStrings } from '../../strings/common';
+import { LanguageContext } from '../../contexts/LanguageContext';
+import { layoutStrings } from '../../strings/layout';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -25,14 +25,23 @@ export default function Layout(props: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const languageContext = useContext(LanguageContext);
   const { setLanguage, language } = languageContext;
-  const strings = commonStrings;
+  const strings = layoutStrings;
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'ja' : 'en');
   };
 
+  const links : {href: string, text: string, external: boolean}[] = [
+    {href: '/', text: strings.aboutMeLink[language], external: false},
+    {href: '/portfolio', text: strings.portfolioLink[language], external: false},
+    {href: '/snippets', text: strings.codeSnippetsLink[language], external: false},
+    {href: 'https://www.linkedin.com/in/nicholas-drinovsky-003a7b7b/', text: strings.linkedInLink[language], external: true},
+    {href: 'https://github.com/ndrinovsky', text: strings.gitHubLink[language], external: true}
+  ];
+
+
   return (
     <>
-      <Navbar isBordered onMenuOpenChange={setIsMenuOpen}>
+      <Navbar isBordered onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen}>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className='md:hidden w-16'
@@ -41,33 +50,24 @@ export default function Layout(props: LayoutProps) {
           <p style={{ fontSize: '20px' }} className='w-full'>{`{ ${strings.developerName.en} }`}</p>
         </NavbarBrand>
         <NavbarContent className='hidden md:flex gap-4' justify='center'>
-          <NavbarItem isActive={location.pathname === '/'} >
-            <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/' className='w-full' size='lg'>
-              {strings.aboutMeLink[language]}
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive={location.pathname === '/portfolio'}>
-            <Link color={location.pathname === '/portfolio' ? 'primary' : 'foreground'} href='/portfolio' className='w-full' size='lg'>
-              {strings.portfolioLink[language]}
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive={location.pathname === '/snippets'}>
-            <Link color={location.pathname === '/snippets' ? 'primary' : 'foreground'} href='/snippets' className='w-full' size='lg'>
-              {strings.codeSnippetsLink[language]}
-            </Link>
-          </NavbarItem>
+          {links.filter(link => !link.external).map((link, key) => 
+            <NavbarItem isActive={location.pathname === link.href} key={key}>
+              <Link color={location.pathname === link.href ? 'primary' : 'foreground'} href={link.href} className='w-full' size='lg'>
+                {link.text}
+              </Link>
+            </NavbarItem>
+          )}
         </NavbarContent>
         <NavbarContent justify='end' className='hidden md:flex gap-4'>
-          <NavbarItem>
-            <Button as={Link} isExternal showAnchorIcon color='primary' href='https://www.linkedin.com/in/nicholas-drinovsky-003a7b7b/' target='_blank' rel='noopener noreferrer' variant='flat'>
-              {strings.linkedInLink[language]}
-            </Button>
-          </NavbarItem>
-          <NavbarItem>
-            <Button as={Link} isExternal showAnchorIcon color='primary' href='https://github.com/ndrinovsky' target='_blank' rel='noopener noreferrer' variant='flat'>
-              {strings.gitHubLink[language]}
-            </Button>
-          </NavbarItem>
+          {links.filter(link => link.external).map((link, key) => 
+            <NavbarItem key={key}>
+              <Button as={Link} isExternal showAnchorIcon color='primary'  href={link.href} target='_blank' rel='noopener noreferrer' variant='flat'>
+                {link.text}
+              </Button>
+            </NavbarItem>
+          )}
+        </NavbarContent>
+        <NavbarContent className='hidden md:flex gap-4' justify='center'>
           <NavbarItem>
             <ButtonGroup size='sm'>
               <Button isDisabled={language === 'en'} onPress={toggleLanguage} size='sm'>English</Button>
@@ -83,31 +83,13 @@ export default function Layout(props: LayoutProps) {
           }
         </NavbarContent>
         <NavbarMenu>
-          <NavbarMenuItem isActive={location.pathname === '/'} >
-            <Link color={location.pathname === '/' ? 'primary' : 'foreground'} href='/' className='w-full' size='lg'>
-              {strings.aboutMeLink[language]}
-            </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem isActive={location.pathname === '/portfolio'}>
-            <Link color={location.pathname === '/portfolio' ? 'primary' : 'foreground'} href='/portfolio' className='w-full' size='lg'>
-              {strings.portfolioLink[language]}
-            </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem isActive={location.pathname === '/snippets'}>
-            <Link color={location.pathname === '/snippets' ? 'primary' : 'foreground'} href='/snippets'  className='w-full' size='lg'>
-              {strings.codeSnippetsLink[language]}
-            </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem>
-            <Link isExternal showAnchorIcon color='primary' href='https://www.linkedin.com/in/nicholas-drinovsky-003a7b7b/' target='_blank' rel='noopener noreferrer' className='w-full' size='lg'>
-              {strings.linkedInLink[language]}
-            </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem>
-            <Link isExternal showAnchorIcon color='primary' href='https://github.com/ndrinovsky' target='_blank' rel='noopener noreferrer' className='w-full' size='lg'>
-              {strings.gitHubLink[language]}
-            </Link>
-          </NavbarMenuItem>
+          {links.map((link, key) =>
+            <NavbarMenuItem isActive={location.pathname === link.href} key={key} >
+              <Link isExternal={link.external} showAnchorIcon={link.external} color={location.pathname === link.href || link.external ? 'primary' : 'foreground'} href={link.href} className='w-full' size='lg' onPress={() => setIsMenuOpen(false)}>
+                {link.text}
+              </Link>
+            </NavbarMenuItem>
+          )}
         </NavbarMenu>
       </Navbar>
       <ContentSection className='px-6 flex w-full h-auto items-center justify-center'>

@@ -2,9 +2,9 @@ import { HeroUIProvider } from '@heroui/react';
 import * as React from "react";
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router';
 import NavLayout from "./components/layout";
-import { LanguageContext } from './context/LanguageContext';
+import { LanguageContext } from './contexts/LanguageContext';
 import { useThemeDetector } from './hooks/darkThemeDetector';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 interface ErrorBoundaryProps {
   error: unknown;
@@ -70,13 +70,19 @@ export function Layout({children}: { children: React.ReactNode;})
 
 export default function Root() {
   const isDarkTheme = useThemeDetector();
-  const [language, setLanguage] = useState<'en' | 'ja'>('en');
+  const storedLanguage = window.sessionStorage.getItem('language');
+  const initialLanguage = storedLanguage ? storedLanguage as 'en' | 'ja' : navigator.language === 'ja' ? 'ja' :'en';
+  const [language, setLanguage] = useState<'en' | 'ja'>(initialLanguage);
   const navigate = useNavigate();
 
+  const toggleLanguage = useCallback((language: 'en' | 'ja') => {
+    window.sessionStorage.setItem('language', language);
+    setLanguage(language);
+  }, []);
 
   return (
     <HeroUIProvider navigate={navigate} useHref={useHref}>
-      <LanguageContext.Provider value={{ language, setLanguage }}>
+      <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
         <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
           <Outlet />
         </main>
