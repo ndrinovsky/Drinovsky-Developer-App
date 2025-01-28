@@ -1,7 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 import { Card, CardBody, CardFooter, CardHeader, Link } from '@heroui/react';
 import { styled } from 'styled-components';
-import { useLoaderData } from "react-router";
+// import { useLoaderData } from "react-router";
+import { portfolioStrings } from '../../strings/portfolio';
+import { LanguageContext } from '../../contexts/LanguageContext';
+import { useContext } from 'react';
 
 const StyledCard = styled(Card)`
   padding-left: 1rem;
@@ -13,12 +16,15 @@ const StyledCard = styled(Card)`
 
 
 export default function Portfolio() {
-  const loaderData = useLoaderData();
-  console.log(loaderData);
+  // const loaderData = useLoaderData();
+  // console.log(loaderData);
+  const languageContext = useContext(LanguageContext);
+  const { language } = languageContext;
+  const strings = portfolioStrings;
   return (
     <StyledCard>
       <CardHeader>
-        Portfolio
+        <div className='text-3xl font-bold tracking-tight'>{strings.pageTitle[language]}</div>
       </CardHeader>
       <CardBody>
         <Link isExternal showAnchorIcon color={location.pathname === '/portfolio' ? 'primary' : 'foreground'} href='https://ndrinovsky.github.io/' className='w-full' size='lg'>

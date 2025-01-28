@@ -38,7 +38,6 @@ export default function Layout(props: LayoutProps) {
     {href: 'https://github.com/ndrinovsky', text: strings.gitHubLink[language], external: true}
   ];
 
-
   return (
     <>
       <Navbar isBordered onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen}>

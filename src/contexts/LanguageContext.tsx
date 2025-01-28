@@ -2,8 +2,8 @@
 import { createContext } from 'react';
 
 interface LanguageContextProps {
-  language: "en" | "ja";
-  setLanguage: (language: "en" | "ja") => void;
+  language: 'en' | 'ja';
+  setLanguage: (language: 'en' | 'ja') => void;
 }
 
 export const LanguageContext = createContext<LanguageContextProps>({

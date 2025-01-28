@@ -1,6 +1,6 @@
-import type { ApplicationString } from "../interfaces/applicationStrings";
+import type { IApplicationString } from '../interfaces/IApplicationString';
 
-export const snippetStrings: { [key: string]: ApplicationString }  = {
+export const snippetStrings: { [key: string]: IApplicationString }  = {
   pageTitle: {
     en: 'Snippets',
     ja: 'スニペット'

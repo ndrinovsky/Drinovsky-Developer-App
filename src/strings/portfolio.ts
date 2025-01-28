@@ -1,12 +1,12 @@
-import type { ApplicationString } from "../interfaces/applicationStrings";
+import type { IApplicationString } from '../interfaces/IApplicationString';
 
-export const portfolioStrings: { [key: string]: ApplicationString }  = {
-  title: {
-    en: "Portfolio",
-    ja: "ポートフォリオ"
+export const portfolioStrings: { [key: string]: IApplicationString }  = {
+  pageTitle: {
+    en: 'Portfolio',
+    ja: 'ポートフォリオ'
   },
   description: {
-    en: "Portfolio page description",
-    ja: "ポートフォリオページの説明",
+    en: 'Portfolio page description',
+    ja: 'ポートフォリオページの説明',
   }
 };

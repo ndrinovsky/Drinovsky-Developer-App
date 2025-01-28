@@ -1,6 +1,6 @@
-import * as React from "react";
-import type { Route } from "./+types/home";
-import Home from "../components/home";
+import * as React from 'react';
+import type { Route } from './+types/home';
+import Home from '../components/home';
 
 // export async function clientLoader(): Promise<Route.ClientLoaderArgs> {
 //   return { message: "home" };

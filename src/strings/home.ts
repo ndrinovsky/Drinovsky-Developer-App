@@ -1,6 +1,6 @@
-import type { ApplicationString } from '../interfaces/applicationStrings';
+import type { IApplicationString } from '../interfaces/IApplicationString';
 
-export const homeStrings: { [key: string]: ApplicationString }  = {
+export const homeStrings: { [key: string]: IApplicationString }  = {
   title: {
     en: 'Introduction',
     ja: '自己紹介'
