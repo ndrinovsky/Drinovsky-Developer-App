@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Route } from "./+types/home";
-import Home from "../components/home";
+import Snippets from "../components/snippets";
 
 // export async function clientLoader(): Promise<Route.ClientLoaderArgs> {
 //   return { message: "home" };
@@ -20,5 +20,5 @@ export async function clientLoader({params}: Route.ClientLoaderArgs) {
 
 
 export default function SnippetsRoute() {
-  return <Home />;
+  return <Snippets />;
 }
