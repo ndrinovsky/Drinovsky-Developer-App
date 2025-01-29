@@ -1,23 +1,74 @@
-import * as React from "react";
-import type { Route } from "./+types/home";
-import Snippets from "../components/snippets";
+import * as React from 'react';
+// import type { Route } from './+types/home';
+import Snippets from '../components/snippets';
+import type { IGist } from '../interfaces/IGist';
+import { Octokit } from 'octokit';
 
-// export async function clientLoader(): Promise<Route.ClientLoaderArgs> {
-//   return { message: "home" };
-// }
-
-export async function clientLoader({params}: Route.ClientLoaderArgs) {
-  // const data = await fetch(`/some/api/stuff/${params.id}`);
-  return params;
+async function fetchGist(gist: IGist): Promise<IGist> {
+  if (import.meta.env.MODE === 'development' && import.meta.env.VITE_GITHUB_PAT){
+    const pat = import.meta.env.VITE_GITHUB_PAT;
+    const octokit = new Octokit({
+      auth: pat
+    });
+    return octokit.request(`GET /gists/${gist.id}`, {
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    }).then(res => {
+      return res.data as IGist;
+    });
+  } else {
+    return fetch(`https://api.github.com/gists/${gist.id}`, {
+      headers: {
+        'Cache-control': 'max-age=3600'
+      }
+    }).then(results => {
+      return results.json();
+    }).then((data: IGist) => {
+      return data;
+    });
+  }
 }
 
-// export async function clientAction({
-//   request,
-// }: Route.ClientActionArgs) {
-//   let formData = await request.formData();
-//   return await processPayment(formData);
-// }
+export async function clientLoader(): Promise<IGist[]> { 
+  let gistList: IGist[] = [];
 
+  if (import.meta.env.MODE === 'development' && import.meta.env.VITE_GITHUB_PAT){
+    const pat = import.meta.env.VITE_GITHUB_PAT;
+    const octokit = new Octokit({
+      auth: pat
+    });
+    gistList = await octokit.request('GET /gists/', {
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    }).then(res => {
+      return res.data as IGist[];
+    });
+  } else {
+    gistList = await fetch('https://api.github.com/users/ndrinovsky/gists', {
+      headers: {
+        'Cache-control': 'max-age=3600'
+      }
+    }).then(results => {
+      return results.json();
+    }).then((data: IGist[]) => {
+      return data;
+    });
+  }
+
+  const promises: Promise<IGist>[] = [];
+  gistList.forEach(gist => {
+    promises.push(fetchGist(gist));
+  });
+
+  const gists = await Promise.all(promises)
+    .then(results => {
+      return results;
+    });
+  
+  return gists;
+}
 
 export default function SnippetsRoute() {
   return <Snippets />;

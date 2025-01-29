@@ -1,7 +1,7 @@
 import { HeroUIProvider } from '@heroui/react';
-import * as React from "react";
+import * as React from 'react';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router';
-import NavLayout from "./components/layout";
+import NavLayout from './components/layout';
 import { LanguageContext } from './contexts/LanguageContext';
 import { useThemeDetector } from './hooks/darkThemeDetector';
 import { useCallback, useState } from 'react';
@@ -82,11 +82,11 @@ export default function Root() {
 
   return (
     <HeroUIProvider navigate={navigate} useHref={useHref}>
-      <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
-        <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
-          <Outlet />
-        </main>
-      </LanguageContext.Provider>
+        <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
+          <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
+            <Outlet />
+          </main>
+        </LanguageContext.Provider>
     </HeroUIProvider>
   );
 }

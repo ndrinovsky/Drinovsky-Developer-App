@@ -16,9 +16,10 @@ export default [
       pluginReactHooks,
     },
     rules: {
-      "pluginReactHooks/rules-of-hooks": "error",
-      "pluginReactHooks/exhaustive-deps": "warn",
+      'pluginReactHooks/rules-of-hooks': 'error',
+      'pluginReactHooks/exhaustive-deps': 'warn',
       semi: [2, 'always'],
+      quotes: [2, 'single'],
       '@typescript-eslint/semi': 0
       }
   },

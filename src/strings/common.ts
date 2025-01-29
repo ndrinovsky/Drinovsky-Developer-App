@@ -1,4 +1,4 @@
-import type { ApplicationString } from "../interfaces/applicationStrings";
+import type { IApplicationString } from '../interfaces/IApplicationString';
 
-export const commonStrings: { [key: string]: ApplicationString }  = {
+export const commonStrings: { [key: string]: IApplicationString }  = {
 };
