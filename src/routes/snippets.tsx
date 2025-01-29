@@ -32,42 +32,42 @@ async function fetchGist(gist: IGist): Promise<IGist> {
 
 export async function clientLoader(): Promise<IGist[]> { 
   let gistList: IGist[] = [];
-
-  if (import.meta.env.MODE === 'development' && import.meta.env.VITE_GITHUB_PAT){
-    const pat = import.meta.env.VITE_GITHUB_PAT;
-    const octokit = new Octokit({
-      auth: pat
-    });
-    gistList = await octokit.request('GET /gists/', {
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28'
-      }
-    }).then(res => {
-      return res.data as IGist[];
-    });
-  } else {
-    gistList = await fetch('https://api.github.com/users/ndrinovsky/gists', {
-      headers: {
-        'Cache-control': 'max-age=3600'
-      }
-    }).then(results => {
-      return results.json();
-    }).then((data: IGist[]) => {
-      return data;
-    });
-  }
-
-  const promises: Promise<IGist>[] = [];
-  gistList.forEach(gist => {
-    promises.push(fetchGist(gist));
-  });
-
-  const gists = await Promise.all(promises)
-    .then(results => {
-      return results;
+  try {
+    if (import.meta.env.MODE === 'development' && import.meta.env.VITE_GITHUB_PAT){
+      const pat = import.meta.env.VITE_GITHUB_PAT;
+      const octokit = new Octokit({
+        auth: pat
+      });
+      gistList = await octokit.request('GET /gists/', {
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      }).then(res => {
+        return res.data as IGist[];
+      });
+    } else {
+      gistList = await fetch('https://api.github.com/users/ndrinovsky/gists').then(results => {
+        return results.json();
+      }).then((data: IGist[]) => {
+        return data;
+      });
+    }
+  
+    const promises: Promise<IGist>[] = [];
+    gistList.forEach(gist => {
+      promises.push(fetchGist(gist));
     });
   
-  return gists;
+    const gists = await Promise.all(promises)
+      .then(results => {
+        return results;
+      });
+    
+    return gists;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export default function SnippetsRoute() {

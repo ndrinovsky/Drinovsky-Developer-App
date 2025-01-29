@@ -20,7 +20,7 @@ export default function Layout(props: LayoutProps) {
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'ja' : 'en');
   };
-  console.log('navigation', navigation);
+  
   const links : {href: string, text: string, external: boolean}[] = [
     {href: '/', text: strings.aboutMeLink[language], external: false},
     {href: '/portfolio', text: strings.portfolioLink[language], external: false},
