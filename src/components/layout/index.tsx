@@ -82,7 +82,7 @@ export default function Layout(props: LayoutProps) {
           )}
         </NavbarMenu>
       </Navbar>
-      {navigation.state === 'loading' && <Progress isStriped isIndeterminate aria-label='Loading...' className='w-full' size='sm' />}
+      {navigation.state === 'loading' && <Progress isStriped isIndeterminate aria-label='Loading...' className='w-full sticky' size='sm' />}
       <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4'>
         {children ?? <Outlet />}
       </div>
