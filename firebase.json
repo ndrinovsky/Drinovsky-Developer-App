@@ -33,5 +33,22 @@
       "enabled": true
     },
     "singleProjectMode": true
-  }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "yarn --prefix \"$RESOURCE_DIR\" lint",
+        "yarn --prefix \"$RESOURCE_DIR\" build"
+      ]
+    }
+  ]
 }
