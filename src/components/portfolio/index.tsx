@@ -13,13 +13,60 @@ export default function Portfolio() {
       <div className='text-3xl font-bold tracking-tight'>{strings.pageTitle[language]}</div><br />
       <p>{strings.description[language]}</p><br />
       <p><Link isExternal showAnchorIcon href={'https://ndrinovsky.github.io/'}>{strings.legacyPortfolioLinkText[language]}</Link></p>
-      
       <Card className='w-full my-2 p-2'>
         <CardHeader>
           <div className='text-3xl font-bold tracking-tight'>{strings.projectSectionTitle[language]}</div>
         </CardHeader>
         <CardBody>
-          <p>{strings.description[language]}</p><br />
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>Fiscal Application</div>
+        </CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>Accounts Receivable Application</div>
+        </CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>Rolex Reunion Appliocation</div>
+        </CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>Exercise Rx</div>
+        </CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>Athlete Playbook</div>
+        </CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>Election Widgets</div>
+        </CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
+      <Card className='w-full my-2 p-2'>
+        <CardHeader>
+          <div className='text-3xl font-bold tracking-tight'>SharePoint Framework (SPFx) Applications</div>
+        </CardHeader>
+        <CardBody>
         </CardBody>
       </Card>
     </>
