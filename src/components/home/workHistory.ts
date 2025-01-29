@@ -8,7 +8,7 @@ export const workHistory: IWorkHistoryItem[] = [
     },
     company: {
       en: 'County of Monterey',
-      ja: 'モンタレー郡'
+      ja: 'モントレー郡'
     },
     location: {
       en: 'Salinas, CA',
@@ -32,7 +32,7 @@ export const workHistory: IWorkHistoryItem[] = [
     },
     location: {
       en: 'Monterey, CA',
-      ja: 'モンタレー、カリフォルニア'
+      ja: 'モントレー、カリフォルニア'
     },
     description: {
       en: 'Google Workspace Admin, Website Design, SEO',
@@ -72,7 +72,7 @@ export const workHistory: IWorkHistoryItem[] = [
     },
     location: {
       en: 'Monterey, CA',
-      ja: 'モンタレー、カリフォルニア'
+      ja: 'モントレー、カリフォルニア'
     },
     description: {
       en: 'Full Stack Development, Database Management, System Architecture, Project Management',
@@ -108,7 +108,7 @@ export const workHistory: IWorkHistoryItem[] = [
     },
     company: {
       en: 'California State University, Monterey Bay',
-      ja: 'カリフォルニア州立大学モンタレーベイ校'
+      ja: 'カリフォルニア州立大学モントレーベイ校'
     },
     location: {
       en: 'Seaside, CA',

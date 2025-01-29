@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter, CardHeader, Divider, Link } from '@heroui/r
 import { snippetStrings } from '../../strings/snippets';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
-import { CopyBlock, atomOneDark, atomOneLight } from 'react-code-blocks';
+import { CodeBlock, atomOneDark, atomOneLight } from 'react-code-blocks';
 import { useLoaderData } from 'react-router';
 import type { IGist } from '../../interfaces/IGist';
 import { useThemeDetector } from '../../hooks/darkThemeDetector';
@@ -37,7 +37,7 @@ export default function Snippets() {
                     return (
                       <div key={index} className='my-2'>
                         <div className='text-1xl font-bold tracking-tight pb-2'>{fileName}</div>
-                          <CopyBlock
+                          <CodeBlock
                             customStyle={{
                               maxHeight: '400px',
                               overflowY: 'scroll'

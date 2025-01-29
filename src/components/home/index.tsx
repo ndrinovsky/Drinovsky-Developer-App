@@ -7,6 +7,7 @@ import {Image} from '@heroui/react';
 import StackIcon from 'tech-stack-icons';
 import Timeline from './Timeline';
 import { techStack } from './techstack';
+import devPhoto from '../../img/devPhoto.png';
 
 export default function Home() {
   const languageContext = useContext(LanguageContext);
@@ -26,7 +27,7 @@ export default function Home() {
               <Image
                 isZoomed
                 alt={'developer'}
-                src={'https://media.licdn.com/dms/image/v2/D5603AQFpnMnX8w-rOQ/profile-displayphoto-shrink_800_800/B56ZSBM.D6HoAc-/0/1737334448829?e=1743638400&v=beta&t=YOwVzcCN10-4oimJvKnEkNY6tl7Ir0po3_-Rfvp83Uc'}
+                src={devPhoto}
                 width={240}
                 height={240}
                 className='rounded-full'
