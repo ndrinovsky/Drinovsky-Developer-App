@@ -82,11 +82,11 @@ export default function Root() {
 
   return (
     <HeroUIProvider navigate={navigate} useHref={useHref}>
-      <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
-        <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
-          <Outlet />
-        </main>
-      </LanguageContext.Provider>
+        <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
+          <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
+            <Outlet />
+          </main>
+        </LanguageContext.Provider>
     </HeroUIProvider>
   );
 }

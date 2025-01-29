@@ -18,12 +18,15 @@ async function fetchGist(gist: IGist): Promise<IGist> {
       return res.data as IGist;
     });
   } else {
-    return fetch(`https://api.github.com/gists/${gist.id}`)
-      .then(results => {
-        return results.json();
-      }).then((data: IGist) => {
-        return data;
-      });
+    return fetch(`https://api.github.com/gists/${gist.id}`, {
+      headers: {
+        'Cache-control': 'max-age=3600'
+      }
+    }).then(results => {
+      return results.json();
+    }).then((data: IGist) => {
+      return data;
+    });
   }
 }
 
@@ -43,8 +46,11 @@ export async function clientLoader(): Promise<IGist[]> {
       return res.data as IGist[];
     });
   } else {
-    gistList = await fetch('https://api.github.com/users/ndrinovsky/gists')
-    .then(results => {
+    gistList = await fetch('https://api.github.com/users/ndrinovsky/gists', {
+      headers: {
+        'Cache-control': 'max-age=3600'
+      }
+    }).then(results => {
       return results.json();
     }).then((data: IGist[]) => {
       return data;

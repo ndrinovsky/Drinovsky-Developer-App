@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, ButtonGroup } from '@heroui/react';
-import { Outlet, useLocation } from 'react-router';
-import { styled } from 'styled-components';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, ButtonGroup, Progress } from '@heroui/react';
+import { Outlet, useLocation, useNavigation } from 'react-router';
 import { useContext, useState, type ReactNode } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { layoutStrings } from '../../strings/layout';
@@ -10,18 +9,10 @@ interface LayoutProps {
   children?: ReactNode;
 };
 
-const ContentSection = styled.div`
-  padding: 2rem;
-  width: 100%;
-  hight: auto;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-`;
-
 export default function Layout(props: LayoutProps) {
   const { children } = props;
   const location = useLocation();
+  const navigation = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const languageContext = useContext(LanguageContext);
   const { setLanguage, language } = languageContext;
@@ -29,7 +20,7 @@ export default function Layout(props: LayoutProps) {
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'ja' : 'en');
   };
-
+  console.log('navigation', navigation);
   const links : {href: string, text: string, external: boolean}[] = [
     {href: '/', text: strings.aboutMeLink[language], external: false},
     {href: '/portfolio', text: strings.portfolioLink[language], external: false},
@@ -91,9 +82,10 @@ export default function Layout(props: LayoutProps) {
           )}
         </NavbarMenu>
       </Navbar>
-      <ContentSection className='px-6 flex w-full h-auto items-center justify-center'>
+      {navigation.state === 'loading' && <Progress isStriped isIndeterminate aria-label='Loading...' className='w-full' size='sm' />}
+      <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4'>
         {children ?? <Outlet />}
-      </ContentSection>
+      </div>
     </>
   );
 }
