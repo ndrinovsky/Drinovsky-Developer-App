@@ -18,11 +18,7 @@ async function fetchGist(gist: IGist): Promise<IGist> {
       return res.data as IGist;
     });
   } else {
-    return fetch(`https://api.github.com/gists/${gist.id}`, {
-      headers: {
-        'Cache-control': 'max-age=3600'
-      }
-    }).then(results => {
+    return fetch(`https://api.github.com/gists/${gist.id}`).then(results => {
       return results.json();
     }).then((data: IGist) => {
       return data;
