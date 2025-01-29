@@ -44,7 +44,7 @@ export async function clientLoader(): Promise<IGist[]> {
         },
       },
     });
-    gistList = await octokit.request('GET /gists/', {
+    gistList = await octokit.request('GET /users/ndrinovsky/gists', {
       headers: {
         'X-GitHub-Api-Version': '2022-11-28',
         'accept': 'application/vnd.github.v3+json'
