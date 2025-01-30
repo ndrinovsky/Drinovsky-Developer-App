@@ -1,7 +1,7 @@
-import * as admin from "firebase-admin";
+import * as admin from 'firebase-admin';
 
 // Initialize our project application
-admin.initializeApp({storageBucket: ""});
+admin.initializeApp({storageBucket: ''});
 
 // Set up database connection
 const firestoreDb: FirebaseFirestore.Firestore = admin.firestore();
