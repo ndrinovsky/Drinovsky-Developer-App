@@ -1,5 +1,5 @@
-import { FirebaseOptions, initializeApp } from '@firebase/app';
-import { getFirestore } from '@firebase/firestore';
+import { FirebaseOptions, initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { databaseURL, projectID, storageBucket } from 'firebase-functions/params';
 
 const firebaseConfig: FirebaseOptions = {
