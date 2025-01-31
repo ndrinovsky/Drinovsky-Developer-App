@@ -1,14 +1,15 @@
 import { type IGist } from '../../../functions/src/interfaces/IGist.js';
 import { Octokit } from 'octokit';
 import { throttling } from '@octokit/plugin-throttling';
+import { defineString } from 'firebase-functions/params';
 
 export default class GitHubService {
-  
   private readonly octokit: Octokit;
   constructor () {
     const MyOctokit = Octokit.plugin(throttling);
+    const gitHubToken = defineString('GH_PAT');
     this.octokit = new MyOctokit({
-      auth: process.env.GITHUB_PAT,
+      auth: gitHubToken.value(),
       throttle: {
         onRateLimit: () => {
           // does not retry
