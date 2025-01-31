@@ -1,13 +1,14 @@
-import { IGist } from '../interfaces/IGist';
+import { type IGist } from '../../../functions/src/interfaces/IGist.js';
 import { Octokit } from 'octokit';
 import { throttling } from '@octokit/plugin-throttling';
 
 export default class GitHubService {
+  
   private readonly octokit: Octokit;
   constructor () {
     const MyOctokit = Octokit.plugin(throttling);
     this.octokit = new MyOctokit({
-      auth: undefined,
+      auth: process.env.GITHUB_PAT,
       throttle: {
         onRateLimit: () => {
           // does not retry
@@ -31,7 +32,7 @@ export default class GitHubService {
         'X-GitHub-Api-Version': '2022-11-28',
         'accept': 'application/vnd.github.v3+json'
         }
-      }).then(res => {
+      }).then((res: { data: IGist; }) => {
         return res.data as IGist;
       });
     } catch (error) {
@@ -46,7 +47,7 @@ export default class GitHubService {
         'X-GitHub-Api-Version': '2022-11-28',
         'accept': 'application/vnd.github.v3+json'
       }
-      }).then(res => {
+      }).then((res: { data: IGist[]; }) => {
         return res.data as IGist[];
       });
     } catch (error) {

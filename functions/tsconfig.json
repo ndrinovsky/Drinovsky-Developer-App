@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "NodeNext",
     "esModuleInterop": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "ES2022"
   },
   "compileOnSave": true,
   "include": [
-    "src", "eslint.config.mjs"  ]
+    "src"
+  ]
 }

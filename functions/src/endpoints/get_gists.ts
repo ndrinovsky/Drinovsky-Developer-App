@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import GitHubService from '../services/gitHubService';
-import { IGist } from '../interfaces/IGist';
+import { type Request, type Response } from 'express';
+import { type IGist } from '../interfaces/IGist.js';
+import GitHubService from '../services/gitHubService.js';
 
 export async function get_gists(req: Request, res: Response) {
   try {
@@ -11,7 +11,7 @@ export async function get_gists(req: Request, res: Response) {
     gistList.forEach(gist => {
       promises.push(githubService.fetchGist(gist));
     });
-    const gists = Promise.all(promises)
+    const gists = await Promise.all(promises)
       .then(results => {
         return results;
       });

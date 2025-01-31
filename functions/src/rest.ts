@@ -1,10 +1,11 @@
-import {Request, Response, NextFunction} from 'express';
-import {routes} from './routes';
 import express from 'express';
+import { type Request, type Response, type NextFunction} from 'express';
 import bodyParser from 'body-parser';
 import bearerToken from 'express-bearer-token';
+import { routes } from './routes.js';
+import { Firestore } from 'firebase/firestore';
 
-export const rest = (db: FirebaseFirestore.Firestore) => {
+export const rest = (db: Firestore) => {
     const app = express();
     const API_PREFIX = 'api';
     // Strip API from the request URI
@@ -22,7 +23,6 @@ export const rest = (db: FirebaseFirestore.Firestore) => {
     app.use(bodyParser.json());
     // Handle API endpoint routes
     routes(app, db);
-
     // Done!
     return app;
 };
