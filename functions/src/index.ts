@@ -1,4 +1,4 @@
-import {onRequest} from 'firebase-functions/v2/https';
+import { onRequest } from 'firebase-functions/v2/https';
 import { GlobalOptions, setGlobalOptions } from 'firebase-functions';
 import { rest } from './rest.js';
 import { db } from './firestore.js';
