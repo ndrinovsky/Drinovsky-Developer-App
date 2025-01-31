@@ -21,6 +21,7 @@ export default function Layout(props: LayoutProps) {
     setLanguage(language === 'en' ? 'ja' : 'en');
   };
   
+  console.log(navigation.state);
   const links : {href: string, text: string, external: boolean}[] = [
     {href: '/', text: strings.aboutMeLink[language], external: false},
     {href: '/portfolio', text: strings.portfolioLink[language], external: false},
