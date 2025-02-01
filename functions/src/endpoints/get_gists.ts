@@ -5,7 +5,7 @@ import { Firestore } from "firebase/firestore";
 
 export const getGistsEndpoint = (db: Firestore) => onCall(
   {
-    cors: false,
+    cors: 'drinovsky.dev',
     enforceAppCheck: true
   },
   async (request, response) => {
