@@ -15,22 +15,16 @@ const firebaseConfig: FirebaseOptions = {
   messagingSenderId: import.meta.env.VITE_APP_DEV_MESSAGING_SENDER_ID,
   measurementId: import.meta.env.VITE_APP_DEV_MEASUREMENT_ID
 };
+initializeApp(firebaseConfig);
 
 // Initialize firebase instance
 if (import.meta.env.MODE === 'production'){
-  fetch('/__/firebase/init.json').then(async response => {
-    initializeApp(await response.json());
-    //const analytics = getAnalytics(app);
-    ReactDOM.hydrateRoot(
-      document,
-      <React.StrictMode>
-        <HydratedRouter />
-      </React.StrictMode>
-    );
-  });
+  ReactDOM.hydrateRoot(
+    document,
+    <HydratedRouter />
+  );
 }
 else{
-  initializeApp(firebaseConfig);
   ReactDOM.hydrateRoot(
     document,
     <React.StrictMode>
