@@ -11,4 +11,4 @@ const settings: GlobalOptions = {
 };
 
 setGlobalOptions(settings);
-export const api = onRequest( { cors: true }, app );
+export const api = onRequest( { cors: /.*drinovsky\.dev$/, }, app );
