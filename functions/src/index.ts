@@ -1,9 +1,6 @@
-import { onRequest } from 'firebase-functions/v2/https';
 import { GlobalOptions, setGlobalOptions } from 'firebase-functions';
-import { rest } from './rest.js';
 import { db } from './firestore.js';
-
-const app = rest(db);
+import { getGistsEndpoint } from './endpoints/get_gists.js';
 
 const settings: GlobalOptions = {
     timeoutSeconds: 60,
@@ -11,4 +8,4 @@ const settings: GlobalOptions = {
 };
 
 setGlobalOptions(settings);
-export const api = onRequest( { cors: true }, app );
+export const getGists = getGistsEndpoint(db);
