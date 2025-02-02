@@ -73,7 +73,6 @@ export default function Portfolio() {
               src={zoomedImageURL}
               alt={'zoomed image'} 
               className='w-full h-full'
-              isZoomed
             />
           </ModalBody>
           <ModalFooter>
