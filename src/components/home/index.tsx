@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader, Divider } from '@heroui/react';
 import { homeStrings } from '../../strings/home';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
-import {Image} from '@heroui/react';
+import { Image } from '@heroui/react';
 import StackIcon from 'tech-stack-icons';
 import Timeline from './Timeline';
 import { techStack } from './techstack';
