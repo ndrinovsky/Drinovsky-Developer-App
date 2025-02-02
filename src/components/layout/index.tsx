@@ -21,7 +21,6 @@ export default function Layout(props: LayoutProps) {
     setLanguage(language === 'en' ? 'ja' : 'en');
   };
   
-  console.log(navigation.state);
   const links : {href: string, text: string, external: boolean}[] = [
     {href: '/', text: strings.aboutMeLink[language], external: false},
     {href: '/portfolio', text: strings.portfolioLink[language], external: false},
@@ -83,7 +82,7 @@ export default function Layout(props: LayoutProps) {
           )}
         </NavbarMenu>
       </Navbar>
-      {navigation.state === 'loading' && <Progress isStriped isIndeterminate aria-label='Loading...' className='w-full sticky' size='sm' />}
+      {navigation.state === 'loading' && <Progress isStriped isIndeterminate aria-label='Loading...' className='w-full fixed top-[65px] left-0 z-50' size='sm' />}
       <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4'>
         {children ?? <Outlet />}
       </div>
