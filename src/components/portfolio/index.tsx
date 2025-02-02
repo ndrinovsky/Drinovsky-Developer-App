@@ -66,7 +66,7 @@ export default function Portfolio() {
           </Card>
         );
       })}
-      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} size='5xl'>
+      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} size='full'>
         <ModalContent>
           <ModalHeader></ModalHeader>
           <ModalBody>
