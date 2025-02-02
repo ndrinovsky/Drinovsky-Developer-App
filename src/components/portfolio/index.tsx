@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Card, CardBody, CardHeader, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
+import { Button, Card, CardBody, CardHeader, Divider, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
 import { portfolioStrings } from '../../strings/portfolio';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext, useState } from 'react';
@@ -48,17 +48,19 @@ export default function Portfolio() {
                 {project.githubLink && <Link isExternal showAnchorIcon href={project.githubLink}>{strings.githubLinkText[language]}</Link>}
                 {project.liveLink && <Link isExternal showAnchorIcon href={project.liveLink}>{strings.liveLinkText[language]}</Link>}
               </div>
-              <div className='flex flex-row gap-2'>
+              <Divider className='my-4' />
+              <div className='flex flex-row gap-2 flex-wrap justify-center'>
                 {project.imageURLs.map((url, index) => {
                   return (
-                    <Image
-                      onClick={() => showModal(url)}
-                      key={index}
-                      src={url}
-                      alt={project.title[language]} 
-                      className='w-1/2 h-1/2 cursor-pointer'
-                      isZoomed
-                    />
+                    <div className='w-full md:w-1/3 flex justify-center' key={index}>
+                      <Image
+                        onClick={() => showModal(url)}
+                        key={index}
+                        src={url}
+                        alt={project.title[language]} 
+                        className='cursor-pointer max-h-[550px]'
+                      />
+                    </div>
                   );
                 })}
               </div>
@@ -66,15 +68,17 @@ export default function Portfolio() {
           </Card>
         );
       })}
-      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} size='full'>
+      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} scrollBehavior='inside' size='5xl'>
         <ModalContent>
           <ModalHeader></ModalHeader>
-          <ModalBody>
-            <Image
-              src={zoomedImageURL}
-              alt={'zoomed image'} 
-              className='w-full h-full'
-            />
+          <ModalBody className='flex justify-center w-full h-full items-center'>
+            <div className='flex flex-wrap justify-center items-center'>
+              <Image
+                src={zoomedImageURL}
+                alt={'zoomed image'}
+                // className='max-h-full flex justify-center'
+              />
+            </div>
           </ModalBody>
           <ModalFooter>
             <Button color="danger" variant="light" onPress={onClose}>
