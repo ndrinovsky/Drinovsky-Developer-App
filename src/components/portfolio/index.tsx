@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Card, CardBody, CardHeader, Link } from '@heroui/react';
+import { Button, Card, CardBody, CardHeader, Link, Modal, ModalBody, ModalContent, ModalFooter } from '@heroui/react';
 import { portfolioStrings } from '../../strings/portfolio';
 import { LanguageContext } from '../../contexts/LanguageContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import type { IPortfolioProject } from '../../interfaces/IPortfolioProject';
 import { useLoaderData } from 'react-router';
+import { Image } from '@heroui/react';
 
 export default function Portfolio() {
   const languageContext = useContext(LanguageContext);
@@ -12,6 +13,22 @@ export default function Portfolio() {
   const strings = portfolioStrings;
   const loaderData = useLoaderData();
   const portfolioProjects: IPortfolioProject[] = loaderData;
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [zoomedImageURL, setZoomedImageURL] = useState('');
+
+  const onOpenChange = (isOpen: boolean) => {
+    setShowImageModal(isOpen);
+  };
+  
+  const showModal = (imageURL: string) => {
+    setZoomedImageURL(imageURL);
+    onOpenChange(true);
+  };
+
+  const onClose = () => {
+    setZoomedImageURL('');
+    onOpenChange(false);
+  };
 
   return (
     <>
@@ -34,7 +51,14 @@ export default function Portfolio() {
               <div className='flex flex-row gap-2'>
                 {project.imageURLs.map((url, index) => {
                   return (
-                    <img key={index} src={url} alt={project.title[language]} className='w-1/2 h-1/2' />
+                    <Image
+                      onClick={() => showModal(url)}
+                      key={index}
+                      src={url}
+                      alt={project.title[language]} 
+                      className='w-1/2 h-1/2 cursor-pointer'
+                      isZoomed
+                    />
                   );
                 })}
               </div>
@@ -42,6 +66,22 @@ export default function Portfolio() {
           </Card>
         );
       })}
+      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} size='lg'>
+        <ModalContent>
+          <ModalBody>
+            <Image
+              src={zoomedImageURL}
+              alt={'zoomed image'} 
+              className='w-full h-full'
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
