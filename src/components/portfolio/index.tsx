@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Card, CardBody, CardHeader, Link, Modal, ModalBody, ModalContent, ModalFooter } from '@heroui/react';
+import { Button, Card, CardBody, CardHeader, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@heroui/react';
 import { portfolioStrings } from '../../strings/portfolio';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext, useState } from 'react';
@@ -66,8 +66,9 @@ export default function Portfolio() {
           </Card>
         );
       })}
-      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} size='lg'>
+      <Modal isOpen={showImageModal} onOpenChange={onOpenChange} size='5xl'>
         <ModalContent>
+          <ModalHeader></ModalHeader>
           <ModalBody>
             <Image
               src={zoomedImageURL}
