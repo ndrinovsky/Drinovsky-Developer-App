@@ -3,12 +3,16 @@ import { Card, CardBody, CardHeader, Link } from '@heroui/react';
 import { portfolioStrings } from '../../strings/portfolio';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
-import { portfolioProjects } from './portfolioProjects';
+import type { IPortfolioProject } from '../../interfaces/IPortfolioProject';
+import { useLoaderData } from 'react-router';
 
 export default function Portfolio() {
   const languageContext = useContext(LanguageContext);
   const { language } = languageContext;
   const strings = portfolioStrings;
+  const loaderData = useLoaderData();
+  const portfolioProjects: IPortfolioProject[] = loaderData;
+
   return (
     <>
       <div className='text-3xl font-bold tracking-tight'>{strings.pageTitle[language]}</div><br />
@@ -30,7 +34,7 @@ export default function Portfolio() {
               <div className='flex flex-row gap-2'>
                 {project.imageURLs.map((url, index) => {
                   return (
-                    <img key={index} src={url} alt={project.title[language]} className='w-1/4 h-1/4' />
+                    <img key={index} src={url} alt={project.title[language]} className='w-1/2 h-1/2' />
                   );
                 })}
               </div>
