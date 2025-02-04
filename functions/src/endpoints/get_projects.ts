@@ -9,7 +9,7 @@ export async function get_projects(req: Request, res: Response, db: Firestore) {
   const projects : IPortfolioProject[] = [];
   try {
     // GET /projects
-    const dbQuery = query(collection(db, 'portfolioProjects'), orderBy('name', 'desc'));
+    const dbQuery = query(collection(db, 'portfolioProjects'), orderBy('date', 'desc'));
 
     const querySnapshot = await getDocs(dbQuery);
     querySnapshot.forEach((doc) => {
