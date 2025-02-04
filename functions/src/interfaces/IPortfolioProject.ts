@@ -7,4 +7,5 @@ export interface IPortfolioProject {
   githubLink?: string;
   liveLink?: string;
   imageURLs: string[];
+  date: Date;
 }

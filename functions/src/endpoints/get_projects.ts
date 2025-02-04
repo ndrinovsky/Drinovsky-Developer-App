@@ -1,7 +1,7 @@
 
 
 import { type Request, type Response } from 'express';
-import { collection, query, getDocs, Firestore } from "firebase/firestore";
+import { collection, query, getDocs, Firestore, orderBy } from 'firebase/firestore';
 import { IPortfolioProject } from '../interfaces/IPortfolioProject.js';
 
 
@@ -9,7 +9,7 @@ export async function get_projects(req: Request, res: Response, db: Firestore) {
   const projects : IPortfolioProject[] = [];
   try {
     // GET /projects
-    const dbQuery = query(collection(db, "portfolioProjects"));
+    const dbQuery = query(collection(db, 'portfolioProjects'), orderBy('name', 'desc'));
 
     const querySnapshot = await getDocs(dbQuery);
     querySnapshot.forEach((doc) => {
@@ -20,7 +20,8 @@ export async function get_projects(req: Request, res: Response, db: Firestore) {
         technologies: data.technologies,
         imageURLs: data.imageURLs,
         liveLink: data.liveLink,
-        githubLink: data.githubLink
+        githubLink: data.githubLink,
+        date: new Date(data.date)
       };
       projects.push(item);
     });
