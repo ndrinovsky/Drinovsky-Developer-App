@@ -98,7 +98,7 @@ export const workHistory: IWorkHistoryItem[] = [
       en: 'Full Stack Development, Database Management',
       ja: 'フルスタック開発、データベース管理'
     },
-    date: '2019-2020',
+    date: '2017-2018',
     type: 'project'
   },
   {
