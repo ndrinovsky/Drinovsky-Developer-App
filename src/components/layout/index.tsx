@@ -51,7 +51,7 @@ export default function Layout(props: LayoutProps) {
         <NavbarContent justify='end' className='hidden md:flex gap-4'>
           {links.filter(link => link.external).map((link, key) => 
             <NavbarItem key={key}>
-              <Button as={Link} isExternal showAnchorIcon color='primary'  href={link.href} target='_blank' rel='noopener noreferrer' variant='flat'>
+              <Button as={Link} isExternal showAnchorIcon color='primary' href={link.href} target='_blank' rel='noopener noreferrer' variant='flat'>
                 {link.text}
               </Button>
             </NavbarItem>
