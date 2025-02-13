@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardBody, CardHeader, Divider } from '@heroui/react';
+import { Card, CardBody, CardHeader, Divider, Link } from '@heroui/react';
 import { homeStrings } from '../../strings/home';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
@@ -34,7 +34,11 @@ export default function Home() {
               />
               <p className='text-2xl font-bold tracking-tight'>{strings.developerName[language]}</p>
               <p className='text-1xl tracking-tight italic'>{strings.developerTitle[language]}</p>
-              <p className='text-1xl tracking-tight'><a href={`mailto:${strings.devloperEmail[language]}`} target='_blank' rel='noreferrer'>{strings.devloperEmail[language]}</a></p>
+              <p className='text-1xl tracking-tight bold'>
+                <Link color='primary' href={`mailto:${strings.devloperEmail[language]}`}  target='_blank' rel='noreferrer' className='w-full' size='lg'>
+                  {strings.devloperEmail[language]}
+                </Link>
+              </p>
             </div>
             <div className='w-full hidden md:flex'>
               <Divider />
