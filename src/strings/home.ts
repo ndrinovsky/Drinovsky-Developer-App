@@ -17,6 +17,10 @@ export const homeStrings: { [key: string]: IApplicationString }  = {
     en: 'Software Engineer',
     ja: 'ソフトウェアエンジニア'
   },
+  devloperEmail: {
+    en: 'nick@drinovsky.dev',
+    ja: 'nick@drinovsky.dev'
+  },
   introductionSectionTitle: {
     en: 'Introduction',
     ja: '自己紹介'

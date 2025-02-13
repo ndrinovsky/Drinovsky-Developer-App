@@ -34,6 +34,7 @@ export default function Home() {
               />
               <p className='text-2xl font-bold tracking-tight'>{strings.developerName[language]}</p>
               <p className='text-1xl tracking-tight italic'>{strings.developerTitle[language]}</p>
+              <p className='text-1xl tracking-tight'><a href={`mailto:${strings.devloperEmail[language]}`} target='_blank' rel='noreferrer'>{strings.devloperEmail[language]}</a></p>
             </div>
             <div className='w-full hidden md:flex'>
               <Divider />
