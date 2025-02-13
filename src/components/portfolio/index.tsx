@@ -49,7 +49,7 @@ export default function Portfolio() {
                 {project.liveLink && <Link isExternal showAnchorIcon href={project.liveLink}>{strings.liveLinkText[language]}</Link>}
               </div>
               <Divider className='my-4' />
-              <div className='flex flex-row gap-2 flex-wrap justify-center'>
+              <div className='flex flex-row gap-2 flex-wrap justify-center items-center'>
                 {project.imageURLs.map((url, index) => {
                   return (
                     <div className='w-full md:w-1/3 flex justify-center' key={index}>
@@ -58,7 +58,7 @@ export default function Portfolio() {
                         key={index}
                         src={url}
                         alt={project.title[language]} 
-                        className='cursor-pointer max-h-[550px]'
+                        className='cursor-pointer max-h-[350px]'
                       />
                     </div>
                   );
