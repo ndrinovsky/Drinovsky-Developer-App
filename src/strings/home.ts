@@ -30,7 +30,7 @@ export const homeStrings: { [key: string]: IApplicationString }  = {
     ja: 'Azure DevOps、CI/CDパイプライン、Gitに精通したソフトウェアエンジニアです。最新のReactコンセプトに精通し、ユーザーフレンドリーなインターフェースの構築経験があります。業務効率を改善し、プロセスを合理化するビジネスクリティカルなアプリケーションを開発、実装してきました。また、クラウドサービスにも長けており、レガシーアプリケーションをクラウドソリューションに移行する際の指導能力も実証済みです。'
   },
   introductionSectionContentP2: {
-    en: 'I am well versed in cloud technologies, particularly Azure, with a strong foundation in front-end development using React and back-end development using C# and .NET. I am have extensive experience in modernizing applications and driving digital transformation within organizations.',
+    en: 'I am well versed in cloud technologies, particularly Azure, with a strong foundation in front-end development using React and back-end development using C# and .NET. I have extensive experience in modernizing applications and driving digital transformation within organizations.',
     ja: '特にAzureを中心としたクラウドテクノロジーに精通しており、Reactを使用したフロントエンド開発とC#および.NETを使用したバックエンド開発に強固な基盤を持っています。アプリケーションの近代化と組織内でのデジタルトランスフォーメーションを推進する経験が豊富です。'
   },
   introductionSectionContentP3: {
