@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, ButtonGroup, Progress } from '@heroui/react';
+import { Link, Button, ButtonGroup, cn, ProgressBar, Label } from '@heroui/react';
 import { Outlet, useLocation, useNavigation } from 'react-router';
+import NavLink from './NavLink';
 import { useContext, useState, type ReactNode } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { layoutStrings } from '../../strings/layout';
 
-interface LayoutProps {
+interface ILayoutProps {
   children?: ReactNode;
 };
 
-export default function Layout(props: LayoutProps) {
+export default function Layout(props: ILayoutProps) {
   const { children } = props;
   const location = useLocation();
   const navigation = useNavigation();
@@ -29,60 +30,115 @@ export default function Layout(props: LayoutProps) {
     {href: 'https://github.com/ndrinovsky', text: strings.gitHubLink[language], external: true}
   ];
 
+  React.useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   return (
     <>
-      <Navbar isBordered onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen}>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className='md:hidden w-16'
-        />
-        <NavbarBrand className='font-bold text-inherit text-center'>
-          <p style={{ fontSize: '20px' }} className='w-full'>{`{ ${strings.developerName.en} }`}</p>
-        </NavbarBrand>
-        <NavbarContent className='hidden md:flex gap-4' justify='center'>
+      <nav className='sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg'>
+        <header className='flex h-16 items-center justify-between px-6 max-w-5xl mx-auto'>
+          <div className='flex items-center gap-4'>
+            <button
+              className='md:hidden'
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label='Toggle menu'
+            >
+              <span className='sr-only'>Menu</span>
+              <svg
+                className='h-6 w-6'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                ) : (
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M4 6h16M4 12h16M4 18h16'
+                  />
+                )}
+              </svg>
+            </button>
+            <div>
+              <p style={{ fontSize: '20px' }} className='w-full'>{`{ ${strings.developerName.en} }`}</p>
+            </div>
+          </div>
+        <ul className='flex items-center hidden md:flex gap-4'>
           {links.filter(link => !link.external).map((link, key) => 
-            <NavbarItem isActive={location.pathname === link.href} key={key}>
-              <Link color={location.pathname === link.href ? 'primary' : 'foreground'} href={link.href} className='w-full' size='lg'>
-                {link.text}
-              </Link>
-            </NavbarItem>
+            <li className={cn(location.pathname === link.href && 'font-medium text-accent')} aria-current={location.pathname === link.href ? 'page' : undefined}  key={key}>
+              <NavLink
+                isExternal={link.external}
+                isActive={location.pathname === link.href}
+                href={link.href}
+                text={link.text}
+              />
+            </li>
           )}
-        </NavbarContent>
-        <NavbarContent justify='end' className='hidden md:flex gap-4'>
+        </ul>
+        <ul className='flex items-center hidden md:flex gap-4'>
           {links.filter(link => link.external).map((link, key) => 
-            <NavbarItem key={key}>
-              <Button as={Link} isExternal showAnchorIcon color='primary' href={link.href} target='_blank' rel='noopener noreferrer' variant='flat'>
-                {link.text}
-              </Button>
-            </NavbarItem>
+            <li key={key}>
+              <NavLink
+                isExternal={link.external}
+                isActive={location.pathname === link.href}
+                href={link.href}
+                text={link.text}
+              />
+            </li>
           )}
-        </NavbarContent>
-        <NavbarContent className='hidden md:flex gap-4' justify='center'>
-          <NavbarItem>
-            <ButtonGroup size='sm'>
-              <Button isDisabled={language === 'en'} onPress={toggleLanguage} size='sm'>English</Button>
-              <Button isDisabled={language === 'ja'} onPress={toggleLanguage} size='sm'>日本語</Button>
+        </ul>
+        <ul className='flex items-center hidden md:flex gap-4'>
+          <li>
+            <ButtonGroup size='md' variant='tertiary'>
+              <Button isDisabled={language === 'en'} onPress={toggleLanguage} size='md'>English</Button>
+              <Button isDisabled={language === 'ja'} onPress={toggleLanguage} size='md'>日本語</Button>
             </ButtonGroup>
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarContent className='md:hidden' justify='center'>
-          {
-            language === 'ja' ?
-            <Button onPress={toggleLanguage}>English</Button> :
-            <Button onPress={toggleLanguage}>日本語</Button>
-          }
-        </NavbarContent>
-        <NavbarMenu>
-          {links.map((link, key) =>
-            <NavbarMenuItem isActive={location.pathname === link.href} key={key} >
-              <Link isExternal={link.external} showAnchorIcon={link.external} color={location.pathname === link.href || link.external ? 'primary' : 'foreground'} href={link.href} className='w-full' size='lg' onPress={() => setIsMenuOpen(false)}>
-                {link.text}
-              </Link>
-            </NavbarMenuItem>
-          )}
-        </NavbarMenu>
-      </Navbar>
-      {navigation.state === 'loading' && <Progress isStriped isIndeterminate aria-label='Loading...' className='w-full fixed top-[65px] left-0 z-50' size='sm' />}
+          </li>
+        </ul>
+        <ul className='flex items-center xs:flex md:hidden gap-4'>
+          <li>
+            {
+              language === 'ja' ?
+              <Button onPress={toggleLanguage}>English</Button> :
+              <Button onPress={toggleLanguage}>日本語</Button>
+            }
+          </li>
+        </ul>
+        </header>
+        {isMenuOpen && (
+          <div className='border-t border-separator md:hidden'>
+            <ul className='flex flex-col gap-2 p-4'>
+              {links.map((link, key) =>
+                <li className={cn(location.pathname === link.href && 'font-medium text-accent')} aria-current={location.pathname === link.href ? 'page' : undefined} key={key} >
+                  <Link href={link.href} className={cn('w-full', location.pathname === link.href && 'font-medium text-accent bg-primary')} onPress={() => setIsMenuOpen(false)}>
+                    {link.text}
+                    {link.external && <Link.Icon />}
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </nav>
+      {
+        navigation.state === 'loading' && (
+          <ProgressBar isIndeterminate className='w-full fixed top-14 left-0 z-50' size='sm'>
+            <ProgressBar.Output />
+            <ProgressBar.Track>
+              <ProgressBar.Fill className='bg-[repeating-linear-gradient(45deg,_#e1e1e1_0,_#e1e1e1_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed'/>
+            </ProgressBar.Track>
+          </ProgressBar>
+        )
+      }
       <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4'>
         {children ?? <Outlet />}
       </div>

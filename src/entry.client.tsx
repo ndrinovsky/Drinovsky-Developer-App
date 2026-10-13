@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './globals.css';
 import { type FirebaseOptions, initializeApp } from 'firebase/app';
 import { HydratedRouter } from 'react-router/dom';
 // import { getAnalytics } from 'firebase/analytics';
