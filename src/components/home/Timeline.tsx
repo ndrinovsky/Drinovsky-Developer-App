@@ -1,17 +1,16 @@
 import * as React from 'react';
-import pkg from 'react-vertical-timeline-component';
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { useThemeDetector } from '../../hooks/darkThemeDetector';
 import { BriefcaseIcon, AcademicCapIcon, CodeBracketIcon, PresentationChartLineIcon } from '@heroicons/react/24/solid';
 import { workHistory } from './workHistory';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
-import { Divider } from '@heroui/react';
+import { Separator } from '@heroui/react';
 
 export default function Timeline() {
   const languageContext = useContext(LanguageContext);
   const { language } = languageContext;
-  const { VerticalTimeline, VerticalTimelineElement } = pkg;
   const isDarkTheme = useThemeDetector();
 
   return (
@@ -38,7 +37,7 @@ export default function Timeline() {
             dateClassName={isDarkTheme ? 'text-white' : 'text-black'}
           >
             <div className='font-bold text-lg'>{item.company[language]}</div>
-            <Divider />
+            <Separator />
             <div className='italic text-md'>{item.title[language]}</div>
             <div className='font-bold text-md'>{item.location[language]}</div>
             <p>

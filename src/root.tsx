@@ -1,4 +1,3 @@
-import { HeroUIProvider } from '@heroui/react';
 import * as React from 'react';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router';
 import NavLayout from './components/layout';
@@ -13,30 +12,28 @@ interface ErrorBoundaryProps {
 export function ErrorBoundary(props: ErrorBoundaryProps) {
   const { error } = props;
   return (
-    <HeroUIProvider>
-      <main className='dark text-foreground bg-background'>
-        <NavLayout>
-          {isRouteErrorResponse(error) ? 
-            <>
-              <h1>
-                {error.status} {error.statusText}
-              </h1>
-              <p>
-                {error.data}
-              </p>
-            </> : 
-            (error instanceof Error) ?
-            <div>
-              <h1>Error</h1>
-              <p>{error.message}</p>
-              <p>The stack trace is:</p>
-              <pre>{error.stack}</pre>
-            </div> : 
-            <h1>Unknown Error</h1>
-          }
-        </NavLayout>
-      </main>
-    </HeroUIProvider>
+    <main className='dark text-foreground bg-background'>
+      <NavLayout>
+        {isRouteErrorResponse(error) ? 
+          <>
+            <h1>
+              {error.status} {error.statusText}
+            </h1>
+            <p>
+              {error.data}
+            </p>
+          </> : 
+          (error instanceof Error) ?
+          <div>
+            <h1>Error</h1>
+            <p>{error.message}</p>
+            <p>The stack trace is:</p>
+            <pre>{error.stack}</pre>
+          </div> : 
+          <h1>Unknown Error</h1>
+        }
+      </NavLayout>
+    </main>
   );
 }
 
@@ -81,12 +78,10 @@ export default function Root() {
   }, []);
 
   return (
-    <HeroUIProvider navigate={navigate} useHref={useHref}>
-        <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
-          <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
-            <Outlet />
-          </main>
-        </LanguageContext.Provider>
-    </HeroUIProvider>
+    <LanguageContext.Provider value={{ language, setLanguage: toggleLanguage }}>
+      <main className={`${isDarkTheme ? 'dark' : 'light'} text-foreground bg-background`}>
+        <Outlet />
+      </main>
+    </LanguageContext.Provider>
   );
 }

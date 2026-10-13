@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "@heroui/styles"; 
+
+main {
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 150px;
+}

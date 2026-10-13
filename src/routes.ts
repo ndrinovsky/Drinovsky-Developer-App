@@ -20,5 +20,15 @@ export default [
         file: './routes/snippets.tsx',
       }
     ],
+  },
+  {
+    path: '/csumb',
+    file: './routes/csumbLayout.tsx',
+    children: [
+      {
+        index: true,
+        file: './routes/csumbHome.tsx',
+      }
+    ],
   }
 ] satisfies RouteConfig;
