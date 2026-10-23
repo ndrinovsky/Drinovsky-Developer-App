@@ -1,10 +1,34 @@
 import type { ICsumbILPClasses } from '../../interfaces/ICsumbILPClasses';
+import NavLink from '../common/NavLink';
 
 export const csumbClasses: ICsumbILPClasses[] = [
   {
     courseNumber: { en: 'CST 349', ja: 'CST 349' },
     courseTitle: { en: 'Computer Science Proseminar', ja: 'コンピュータサイエンスプロセミナー' },
-    children: <div className='text-lg font-semibold'>Industry Expert Interview Report</div>,
+    children: 
+      <>
+        <div className='text-lg font-semibold'>Industry Expert Interview Report</div> 
+        <NavLink
+          isExternal
+          isActive={true}
+          href={'https://nickcancode.blogspot.com/2026/10/industry-expert-interview-exploring.html'}
+          text='Read more'
+        />
+        <div className='text-lg font-semibold'>Professional Final Video</div>
+        <NavLink
+          isExternal
+          isActive={true}
+          href={'https://www.youtube.com/watch?v=Fv1gXJNilvI'}
+          text='Watch Professional Video'
+        />
+        <div className='text-lg font-semibold'>General Final Video</div>
+        <NavLink
+          isExternal
+          isActive={true}
+          href={'https://youtu.be/bRRuLe8zquA'}
+          text='Watch General Video'
+        />
+      </>,
     courseDescription: 
     { 
       en: 'The Proseminar course helps students prepare for \'life after college\' by connecting their major to their broader personal and professional goals. In this course, students will critically analyze information from diverse sources, including academic and business literature and conversations with industry mentors. They will also develop crucial problem-solving, communication, and teamwork skills throughout the course. This analysis and skill development will guide them in crafting their personal value proposition and a plan for developing a professional portfolio.', 

@@ -10,13 +10,11 @@ export default [
         file: './routes/home.tsx',
       },
       {
-        path: '/portfolio',
-        index: true,
+        path: 'portfolio',
         file: './routes/portfolio.tsx',
       },
       {
-        path: '/snippets',
-        index: true,
+        path: 'snippets',
         file: './routes/snippets.tsx',
       }
     ],

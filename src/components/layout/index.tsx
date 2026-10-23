@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link, Button, ButtonGroup, cn, ProgressBar, Label } from '@heroui/react';
 import { Outlet, useLocation, useNavigation } from 'react-router';
-import NavLink from './NavLink';
+import NavLink from '../common/NavLink';
 import { useContext, useState, type ReactNode } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { layoutStrings } from '../../strings/layout';
@@ -139,7 +139,7 @@ export default function Layout(props: ILayoutProps) {
           </ProgressBar>
         )
       }
-      <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4'>
+      <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4 mx-auto'>
         {children ?? <Outlet />}
       </div>
     </>

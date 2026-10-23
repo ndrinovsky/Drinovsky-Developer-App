@@ -4,7 +4,7 @@ import { Outlet, useLocation, useNavigation } from 'react-router';
 import { useContext, useState, type ReactNode } from 'react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { csumbLayoutStrings } from '../../strings/csumbLayout';
-import NavLink from './NavLink';
+import NavLink from '../common/NavLink';
 import csumbLogoColor from '../../img/csumb-logo-color.png';
 import { useThemeDetector } from '../../hooks/darkThemeDetector';
 
@@ -152,7 +152,7 @@ export default function CsumbLayout(props: ICsumbLayoutProps) {
           </ProgressBar>
         )
       }
-      <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4'>
+      <div className='flex flex-col items-center justify-center px-4 w-full h-auto max-w-6xl justify-self-center pt-4 mx-auto'>
         {children ?? <Outlet />}
       </div>
     </>
